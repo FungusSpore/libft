@@ -6,7 +6,7 @@
 /*   By: jianwong <jianwong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:44:20 by jianwong          #+#    #+#             */
-/*   Updated: 2024/11/15 18:07:40 by jianwong         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:48:09 by jianwong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*ft_itoa(int n)
 	int		num[2];
 	char	*result;
 
-	num[0] = n;
+	num[0] = n / 10;
 	num[1] = (n < 0) + 1;
-	while (num[0] /= 10)
-		num[1]++;
+	while (num[0] && num[1]++ > 0)
+		num[0] /= 10;
 	result = malloc(num[1] + 1);
 	if (!result)
 		return (NULL);

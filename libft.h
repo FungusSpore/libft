@@ -6,7 +6,7 @@
 /*   By: jianwong <jianwong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:29:33 by jianwong          #+#    #+#             */
-/*   Updated: 2024/11/07 17:26:25 by jianwong         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:21:12 by jianwong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <limits.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
@@ -22,6 +25,7 @@ typedef struct s_list
 	struct s_list		*next;
 }								t_list;
 
+// Basic
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -68,5 +72,31 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
+// printf
+// main
+int		ft_printf(const char *str, ...);
+// helper
+char	*extract_flags(const char *str, int *i);
+int		get_min_width(const char *str, int *i);
+int		get_significant(const char *str, int *i, char **flags);
+char	*get_variable(va_list ptr, const char *str, int	*i);
+// helper2
+char	*init_buffer(char	*flags, int size, char convert);
+char	*make_var(char **params, char convert, int sig_no);
+// insert
+char	*insert_var(char *str, char *buffer, char *order);
+char	*insert_char(char *str, char *buffer, char *order);
+// precision
+char	*precision_handling(char *str, int sig_no, char convert);
+// utils
+char	*ft_itohex(unsigned int n, char c);
+char	*ft_ltohex(unsigned long n, char c);
+char	*ft_tomemory(void *ptr);
+char	*ft_uitoa(unsigned int n);
+// set BUFFER_SIZE if not set at compilation
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
+// get_next_line
+char	*get_next_line(int fd);
 #endif
