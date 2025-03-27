@@ -6,7 +6,7 @@
 /*   By: jianwong <jianwong@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:29:33 by jianwong          #+#    #+#             */
-/*   Updated: 2024/12/27 16:06:26 by jianwong         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:37:31 by jianwong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
@@ -54,8 +55,9 @@ char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strntrim(char const *s1, char const *set, int count);
 char	**ft_split(char const *s, char c);
-void	free_all(void **vars);
+void	free_all(void **vars, size_t size);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -63,6 +65,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_qsort(void *base, size_t nmemb, \
+							size_t size, int (*cmp)(const void *, const void *));
 //bonus
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
